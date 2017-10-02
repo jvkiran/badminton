@@ -9,7 +9,7 @@
 <?php
 require('db.php');
 // If form submitted, insert values into the database.
-if (isset($_REQUEST['username'])){
+if (isset($_REQUEST['email'])){
         // removes backslashes
 	$username = stripslashes($_REQUEST['username']);
         //escapes special characters in a string
@@ -18,6 +18,12 @@ if (isset($_REQUEST['username'])){
 	$email = mysqli_real_escape_string($con,$email);
 	$password = stripslashes($_REQUEST['password']);
 	$password = mysqli_real_escape_string($con,$password);
+
+    $mobile_number = stripcslashes($_REQUEST['mobile_number']);
+    $mobile_number = mysqli_real_escape_string($con, $mobile_number);
+
+    $gender = stripcslashes($_REQUEST['gender']);
+    $gender = mysqli_real_escape_string($con, $gender);
 	// $trn_date = date("Y-m-d H:i:s");
         $query = "INSERT into `users` (username, password, email, mobile_number, gender)
 VALUES ('$username', '".md5($password)."', '$email', '$mobile_number', '$gender')";
